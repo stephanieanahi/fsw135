@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/itemsdb',
   },
   () => console.log("Connected to the DB")
 )
-
-app.listen(3000, () => {
-    console.log("The App is listening on port 3000. ")
+app.use('/inventory', require('./routes/itemsRouter'))
+app.listen(5000, () => {
+    console.log("The App is listening on port 5000. ")
 } );
