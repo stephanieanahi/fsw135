@@ -1,14 +1,12 @@
 const express = require('express');
-const itemsRouter = express.Router() 
+const authRouter = express.Router() 
 const mongoose = require("mongoose")
-const Inventory = require('../models/inventory')
+const User = require('../models/user')
+const Issues = require('../models/comment')
+const Comments = require('../models/issue')
 
-
-
-
-
-itemsRouter.get('/:id', (req, res) => {
-    itemsRouter.get("/", (req, res, next) => {
+authRouter.get('/:id', (req, res) => {
+   authRouter.get("/", (req, res, next) => {
         item.find((err, items) => {
           if(err){
             res.status(500)
@@ -22,7 +20,7 @@ itemsRouter.get('/:id', (req, res) => {
     res.send("this route is working")
 });
 
-itemsRouter.put("/:itemId", (req, res, next) => {
+authRouter.put("/:itemId", (req, res, next) => {
     item.findOneAndUpdate(
       { _id: req.params.itemID},
       req.body,
@@ -37,7 +35,7 @@ itemsRouter.put("/:itemId", (req, res, next) => {
     )  
   })
 
-itemsRouter.delete("/:itemId", (req, res, next) => {
+authRouter.delete("/:itemId", (req, res, next) => {
     item.findOneAndDelete(
       {_id: req.params.itemsId}, 
       (err, deletedItem) => {
@@ -51,7 +49,7 @@ itemsRouter.delete("/:itemId", (req, res, next) => {
   })
 
 
-    itemsRouter.post('/', (req, res) => {
+    authRouter.post('/', (req, res) => {
         const newItem = new item (req.body)
         newItem.save((err, savedItem) => {
           if(err){
@@ -61,5 +59,7 @@ itemsRouter.delete("/:itemId", (req, res, next) => {
           return res.status(201).send(savedItem)
         })
       })
-        
-    module.exports = (itemsRouter)
+
+
+
+module.exports = (authRouter)
