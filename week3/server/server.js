@@ -16,8 +16,8 @@ mongoose.connect('mongodb://localhost:27017/itemsdb',
   },
   () => console.log("Connected to the DB")
 )
-app.use('/inventory', require('../../week2/server/routes/itemsRouter'))
-app.use('/inventory', require('./routes/authRouter'))
+app.use('/issues', require('../../week2/server/routes/issuesRouter'))
+app.use('/auth', require('./routes/authRouter'))
 
 
 app.listen(5000, () => {
