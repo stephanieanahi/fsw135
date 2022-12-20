@@ -3,12 +3,7 @@ const itemsRouter = express.Router()
 const mongoose = require("mongoose")
 const Issue = require('../models/issue')
 
-
-
-
-
-
-    itemsRouter.get("/", (req, res, next) => {
+ itemsRouter.get("/", (req, res, next) => {
         Issue.find((err, items) => {
           if(err){
             res.status(500)
@@ -52,7 +47,7 @@ itemsRouter.delete("/:itemId", (req, res, next) => {
 
 
     itemsRouter.post('/', (req, res) => {
-        const newItem = new item (req.body)
+        const newIssue = new Issue(req.body)
         newIssue.save((err, savedItem) => {
           if(err){
             res.status(500)
