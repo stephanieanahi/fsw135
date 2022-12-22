@@ -3,8 +3,9 @@ const itemsRouter = express.Router()
 const mongoose = require("mongoose")
 const Issue = require('../models/issue')
 
- itemsRouter.get("/", (req, res, next) => {
-        Issue.find((err, items) => {
+ itemsRouter.get("/user", (req, res, next) => {
+  console.log(req.auth)
+        Issue.find({user:req.auth._id},(err, items) => {
           if(err){
             res.status(500)
             return next(err)
@@ -47,6 +48,7 @@ itemsRouter.delete("/:itemId", (req, res, next) => {
 
 
     itemsRouter.post('/', (req, res) => {
+      req.body.user= req.auth._id
         const newIssue = new Issue(req.body)
         newIssue.save((err, savedItem) => {
           if(err){
